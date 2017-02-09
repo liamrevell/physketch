@@ -4,7 +4,7 @@ Date: 2017-02-09
 Title: Drawing phylogenetic objects free-hand
 Author: Liam J. Revell
 Maintainer: Liam J. Revell <liam.revell@umb.edu>
-Depends: R (>= 3.2.0), ape (>= 4.0), phytools (>=0.5-73)
+Depends: R (>= 3.2.0), ape (>= 4.0), phytools (>= 0.5-73)
 Imports: 
 Suggests: 
 ZipData: no
