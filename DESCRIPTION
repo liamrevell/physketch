@@ -1,0 +1,18 @@
+Package: physketch
+Version: 0.1
+Date: 2017-02-09
+Title: Drawing phylogenetic objects free-hand
+Author: Liam J. Revell
+Maintainer: Liam J. Revell <liam.revell@umb.edu>
+Depends: R (>= 3.2.0), ape (>= 4.0), phytools (>=0.5-73)
+Imports: 
+Suggests: 
+ZipData: no
+Description: Package is for drawing phylogenies free-hand in various
+	ways to produce objects of class "phylo" which can be used by 
+	other packages.
+License: GPL (>= 2)
+URL: http://github.com/liamrevell/physketch
+Packaged: 2017-02-09 12:00:00 EST
+Repository: 
+Date/Publication: 2017-02-09 12:00:00 EST
