@@ -3,13 +3,14 @@
 
 phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 	par(fg=make.transparent("grey",0.8))
-	if(is.null(img)) img<-readJPEG(file) ## file option disabled
-	plot.new()
+	if(is.null(img)) img<-readJPEG(file)
+	if(!is.raster(img)) img<-as.raster(img)
 	par(mar=rep(0.1,4))
-	plot.window(xlim=c(0,10),ylim=c(0,10))
-	rasterImage(img,0,0,10,10)
+	plot(img)
+	xlim<-c(0,ncol(img))
+	ylim<-c(0,nrow(img))
 	if(gridlines){
-		v<-seq(0,1,by=1/20)*diff(par()$usr[1:2])+par()$usr[1]
+		v<-seq(0,1,by=1/20)*diff(xlim)+xlim[1]
 		nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 			col=make.transparent("grey",0.7)))
 	}
@@ -35,8 +36,8 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 	class(tree)<-"phylo"
 	tips<-setNames(c(right.xy[2],left.xy[2]),tree$tip.label)
 	names(tips)<-gsub(" ","_",names(tips))
-	plotTree(tree,add=TRUE,tips=tips,xlim=c(0,10)-root[1],ylim=c(0,10),
-		color=make.transparent("blue",0.4),lwd=4)
+	plotTree(tree,add=TRUE,tips=tips,xlim=xlim-root[1],ylim=ylim,
+		color=make.transparent("blue",0.4),lwd=4,asp=1)
 	tip<-0
 	cat("  Enter the name of tip to add (or press ENTER). > ")
 	flush.console()
@@ -49,17 +50,14 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 		flush.console()
 		obj<-get.treepos(message=FALSE)
 		tree<-bind.tip(tree,tip,edge.length=xy[1]-(nodeheight(tree,obj$where)-
-		obj$pos),where=obj$where,position=obj$pos)
+			obj$pos),where=obj$where,position=obj$pos)
 		tips<-c(tips,setNames(xy[2],tip))
 		names(tips)<-gsub(" ","_",names(tips))
-		plot.new()
-		par(mar=rep(0.1,4))
-		plot.window(xlim=c(0,10),ylim=c(0,10))
-		rasterImage(img,0,0,10,10)
+		plot(img)
 		if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 			col=make.transparent("grey",0.7)))
 		plotTree(tree,add=TRUE,tips=tips,xlim=c(0,10)-root[1],ylim=c(0,10),
-			color=make.transparent("blue",0.4),lwd=4)
+			color=make.transparent("blue",0.4),lwd=4,asp=1)
 		old<-tip
 		cat("  Enter the name of tip to add (or press ENTER). > ")
 		flush.console()
@@ -67,14 +65,11 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 		while(tip=="GOBACK"){
 			cat(paste("  Dropping ",old,".\n",sep=""))
 			tree<-drop.tip(tree,gsub(" ","_",old))
-			plot.new()
-			par(mar=rep(0.1,4))
-			plot.window(xlim=c(0,10),ylim=c(0,10))
-			rasterImage(img,0,0,10,10)
+			plot(img)
 			if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 				col=make.transparent("grey",0.7)))
 			plotTree(tree,add=TRUE,tips=tips,xlim=c(0,10)-root[1],ylim=c(0,10),
-			color=make.transparent("blue",0.4),lwd=4)
+				color=make.transparent("blue",0.4),lwd=4,asp=1)
 			cat("  Enter the name of tip to add (or press ENTER). > ")
 			flush.console()
 			tip<-readLines(n=1)
