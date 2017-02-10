@@ -1,4 +1,4 @@
-export(phylo.trace)
+export(phylo.tracer)
 
 importFrom(phytools, make.transparent, plotTree, get.treepos, bind.tip)
 importFrom(graphics, plot.new, par, plot.window, rasterImage, locator)

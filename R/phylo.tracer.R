@@ -1,9 +1,9 @@
 ## function to draw a tree from an image
 ## written by Liam J. Revell 2017
 
-phylo.trace<-function(img,file=NULL){
+phylo.tracer<-function(img=NULL,file=""){
 	par(fg=make.transparent("grey",0.8))
-	## img<-readJPEG(file) ## file option disabled
+	if(is.null(img)) img<-readJPEG(file) ## file option disabled
 	plot.new()
 	par(mar=rep(0.1,4))
 	plot.window(xlim=c(0,10),ylim=c(0,10))
