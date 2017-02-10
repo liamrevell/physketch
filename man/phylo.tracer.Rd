@@ -25,7 +25,7 @@ phylo.tracer(img=NULL, file="", gridlines=TRUE)
 }
 \author{Liam Revell \email{liam.revell@umb.edu}}
 \seealso{
-	\code{\link{brownie.lite}}
+	\code{\link{draw.ultrametric}}
 }
 \keyword{phylogenetics}
 

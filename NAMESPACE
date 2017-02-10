@@ -1,9 +1,9 @@
-export(phylo.tracer)
+export(draw.ultrametric, phylo.tracer)
 
 importFrom(ape, drop.tip)
-importFrom(phytools, make.transparent, plotTree, get.treepos, bind.tip, nodeheight)
-importFrom(graphics, plot.new, par, plot.window, rasterImage, locator, abline)
+importFrom(phytools, make.transparent, plotTree, get.treepos, bind.tip, nodeheight, pbtree)
+importFrom(graphics, plot.new, par, plot.window, rasterImage, locator, abline, axis)
 importFrom(utils, flush.console)
 importFrom(stats, setNames)
 importFrom(jpeg, readJPEG)
-
+importFrom(grDevices, dev.flush, dev.hold)
