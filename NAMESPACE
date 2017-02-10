@@ -5,3 +5,5 @@ importFrom(phytools, make.transparent, plotTree, get.treepos, bind.tip, nodeheig
 importFrom(graphics, plot.new, par, plot.window, rasterImage, locator)
 importFrom(utils, flush.console)
 importFrom(stats, setNames)
+importFrom(jpeg, readJPEG)
+
