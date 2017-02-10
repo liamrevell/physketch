@@ -1,13 +1,18 @@
 ## function to draw a tree from an image
 ## written by Liam J. Revell 2017
 
-phylo.tracer<-function(img=NULL,file=""){
+phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 	par(fg=make.transparent("grey",0.8))
 	if(is.null(img)) img<-readJPEG(file) ## file option disabled
 	plot.new()
 	par(mar=rep(0.1,4))
 	plot.window(xlim=c(0,10),ylim=c(0,10))
 	rasterImage(img,0,0,10,10)
+	if(gridlines){
+		v<-seq(0,1,by=1/20)*diff(par()$usr[1:2])+par()$usr[1]
+		nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
+			col=make.transparent("grey",0.7)))
+	}
 	cat("  Click the position of the GLOBAL ROOT.\n")
 	flush.console()
 	root<-unlist(locator(1))
@@ -51,6 +56,8 @@ phylo.tracer<-function(img=NULL,file=""){
 		par(mar=rep(0.1,4))
 		plot.window(xlim=c(0,10),ylim=c(0,10))
 		rasterImage(img,0,0,10,10)
+		if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
+			col=make.transparent("grey",0.7)))
 		plotTree(tree,add=TRUE,tips=tips,xlim=c(0,10)-root[1],ylim=c(0,10),
 			color=make.transparent("blue",0.4),lwd=4)
 		old<-tip
@@ -64,6 +71,8 @@ phylo.tracer<-function(img=NULL,file=""){
 			par(mar=rep(0.1,4))
 			plot.window(xlim=c(0,10),ylim=c(0,10))
 			rasterImage(img,0,0,10,10)
+			if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
+				col=make.transparent("grey",0.7)))
 			plotTree(tree,add=TRUE,tips=tips,xlim=c(0,10)-root[1],ylim=c(0,10),
 			color=make.transparent("blue",0.4),lwd=4)
 			cat("  Enter the name of tip to add (or press ENTER). > ")
