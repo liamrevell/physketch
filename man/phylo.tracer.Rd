@@ -2,11 +2,12 @@
 \alias{phylo.tracer}
 \title{Method to trace a tree in a raster image}
 \usage{
-phylo.tracer(img=NULL, file="")
+phylo.tracer(img=NULL, file="", gridlines=TRUE)
 }
 \arguments{
 	\item{img}{a raster image.}
 	\item{file}{a file to be read into R.}
+	\item{gridlines}{logical argument indicating whether or not grid lines should be plotted.}
 }
 \description{
 	This function allows the user to trace a raster image of a phylogenetic tree & produce an object of class \code{"phylo"}.
