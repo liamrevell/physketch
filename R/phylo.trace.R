@@ -1,8 +1,6 @@
 ## function to draw a tree from an image
 ## written by Liam J. Revell 2017
 
-get.treepos<-phytools:::get.treepos
-
 phylo.trace<-function(img,file=NULL){
 	par(fg=make.transparent("grey",0.8))
 	## img<-readJPEG(file) ## file option disabled
