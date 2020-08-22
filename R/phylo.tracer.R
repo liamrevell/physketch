@@ -7,7 +7,8 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 	plot.new()
 	par(mar=rep(0.1,4))
 	mxy<-dim(img)[1:2]
-	plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=1)
+	asp<-(mxy[1]/mxy[2])/(par()$pin[1]/par()$pin[2])
+	plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=asp)
 	rasterImage(img,0,0,mxy[1],mxy[2])
 	if(gridlines){
 		v<-seq(0,1,by=1/20)*diff(c(0,mxy[1]))
@@ -37,7 +38,7 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 	tips<-setNames(c(right.xy[2],left.xy[2]),tree$tip.label)
 	names(tips)<-gsub(" ","_",names(tips))
 	plotTree(tree,add=TRUE,tips=tips,xlim=c(0,mxy[1])-root[1],ylim=c(0,mxy[2]),
-		color=make.transparent("blue",0.4),lwd=4,asp=1)
+		color=make.transparent("blue",0.4),lwd=4,asp=asp)
 	tip<-0
 	cat("  Enter the name of tip to add (or press ENTER). > ")
 	flush.console()
@@ -55,12 +56,12 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 		names(tips)<-gsub(" ","_",names(tips))
 		plot.new()
 		par(mar=rep(0.1,4))
-		plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=1)
+		plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=asp)
 		rasterImage(img,0,0,mxy[1],mxy[2])
 		if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 			col=make.transparent("grey",0.7)))
 		plotTree(tree,add=TRUE,tips=tips,xlim=c(0,mxy[1])-root[1],ylim=c(0,mxy[2]),
-			color=make.transparent("blue",0.4),lwd=4,asp=1)
+			color=make.transparent("blue",0.4),lwd=4,asp=asp)
 		old<-tip
 		cat("  Enter the name of tip to add (or press ENTER). > ")
 		flush.console()
@@ -75,7 +76,7 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 			if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 				col=make.transparent("grey",0.7)))
 			plotTree(tree,add=TRUE,tips=tips,xlim=c(0,mxy[1])-root[1],ylim=c(0,mxy[2]),
-				color=make.transparent("blue",0.4),lwd=4,asp=1)
+				color=make.transparent("blue",0.4),lwd=4,asp=asp)
 			cat("  Enter the name of tip to add (or press ENTER). > ")
 			flush.console()
 			tip<-readLines(n=1)
