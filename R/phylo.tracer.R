@@ -71,7 +71,7 @@ phylo.tracer<-function(img=NULL,file="",gridlines=TRUE){
 			tree<-drop.tip(tree,gsub(" ","_",old))
 			plot.new()
 			par(mar=rep(0.1,4))
-			plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=1)
+			plot.window(xlim=c(0,mxy[1]),ylim=c(0,mxy[2]),asp=asp)
 			rasterImage(img,0,0,mxy[1],mxy[2])
 			if(gridlines) nulo<-sapply(v,function(v) abline(v=v,lty="dashed",
 				col=make.transparent("grey",0.7)))
